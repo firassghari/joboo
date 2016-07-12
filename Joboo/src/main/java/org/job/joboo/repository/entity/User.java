@@ -14,7 +14,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userId", unique = true, nullable = false)
-	private int userId;
+	private Long userId;
 	@Column(name = "fName", nullable = false)
 	private String fName ;
 	@Column(name = "lName", nullable = false)
@@ -29,10 +29,10 @@ public class User {
 	private String birthDate ;
 	@Column(name = "joinDate", nullable = false)
 	private Date   joinDate ;
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public String getfName() {
@@ -77,7 +77,7 @@ public class User {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
-	public User(int userId, String fName, String lName, String country, String city, String adress, String birthDate,
+	public User(Long userId, String fName, String lName, String country, String city, String adress, String birthDate,
 			Date joinDate) {
 		super();
 		this.userId = userId;
@@ -108,7 +108,7 @@ public class User {
 		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
 		result = prime * result + ((joinDate == null) ? 0 : joinDate.hashCode());
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
-		result = prime * result + userId;
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 	@Override
@@ -155,11 +155,13 @@ public class User {
 				return false;
 		} else if (!lName.equals(other.lName))
 			return false;
-		if (userId != other.userId)
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
-	
 	
 
 	
