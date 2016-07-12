@@ -1,6 +1,7 @@
 package org.job.joboo.repository.implementation;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.job.joboo.repository.AbstractRepository;
 import org.job.joboo.repository.entity.User;
@@ -9,13 +10,14 @@ import org.job.joboo.repository.iRepository.UserRepository;
 public class UserRepositoryImplementation extends AbstractRepository implements UserRepository{
 
 	public Collection<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		  List<User> list = (List<User>) getSession().createQuery("from User").list();
+		return list;
+		
 	}
 
 	public User findOneUserById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		User user =  (User) getSession().get(User.class, id);
+		return  user;
 	}
 
 	public User editUser(User user) {
