@@ -1,34 +1,26 @@
-package org.job.joboo.repository.entity;
+package org.job.joboo.model.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.job.joboo.repository.entity.User;
 
-import org.hibernate.annotations.Table;
-import org.job.joboo.model.dto.UserDTO;
 
-@Table(appliesTo = "User")
-public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "userId", unique = true, nullable = false)
+
+public class UserDTO implements Serializable  {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Long userId;
-	@Column(name = "fName", nullable = false)
 	private String fName ;
-	@Column(name = "lName", nullable = false)
 	private String lName;
-	@Column(name = "country", nullable = false)
 	private String country ;
-	@Column(name = "city", nullable = false)
 	private String city ;
-	@Column(name = "adress", nullable = false)
 	private String adress;
-	@Column(name = "birthDate", nullable = false)
 	private String birthDate ;
-	@Column(name = "joinDate", nullable = false)
 	private Date   joinDate ;
 	public Long getUserId() {
 		return userId;
@@ -78,8 +70,8 @@ public class User {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
-	public User(Long userId, String fName, String lName, String country, String city, String adress, String birthDate,
-			Date joinDate) {
+	public UserDTO(Long userId, String fName, String lName, String country, String city, String adress,
+			String birthDate, Date joinDate) {
 		super();
 		this.userId = userId;
 		this.fName = fName;
@@ -90,14 +82,10 @@ public class User {
 		this.birthDate = birthDate;
 		this.joinDate = joinDate;
 	}
-	public User() {
+	public UserDTO() {
 		super();
 	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", fName=" + fName + ", lName=" + lName + ", country=" + country + ", city="
-				+ city + ", adress=" + adress + ", birthDate=" + birthDate + ", joinDate=" + joinDate + "]";
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,7 +108,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserDTO other = (UserDTO) obj;
 		if (adress == null) {
 			if (other.adress != null)
 				return false;
@@ -163,18 +151,20 @@ public class User {
 			return false;
 		return true;
 	}
-	public User (UserDTO userdto)
+	public UserDTO(User user)
 	{
 		UserDTO convertedUser = new UserDTO();
-		convertedUser.setAdress(userdto.getAdress());
-		convertedUser.setBirthDate(userdto.getBirthDate());
-		convertedUser.setCity(userdto.getCity());
-		convertedUser.setCountry(userdto.getCountry());
-		convertedUser.setfName(userdto.getfName());
-		convertedUser.setJoinDate(userdto.getJoinDate());
-		convertedUser.setlName(userdto.getlName());
+	
+		convertedUser.setAdress(user.getAdress());
+		convertedUser.setBirthDate(user.getBirthDate());
+		convertedUser.setCity(user.getCity());
+		convertedUser.setCountry(user.getCountry());
+		convertedUser.setfName(user.getfName());
+		convertedUser.setJoinDate(user.getJoinDate());
+		convertedUser.setlName(user.getlName());
+		
+		
 		
 	}
-
 	
 }
