@@ -28,76 +28,12 @@ public class User {
 	private String adress;
 	@Column(name = "birthDate", nullable = false)
 	private String birthDate ;
+	@Column(name = "password", nullable = false)
+	private String password ;
 	@Column(name = "joinDate", nullable = false)
 	private Date   joinDate ;
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-	public String getfName() {
-		return fName;
-	}
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-	public String getlName() {
-		return lName;
-	}
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getAdress() {
-		return adress;
-	}
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
-	public String getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-	public Date getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
-	}
-	public User(Long userId, String fName, String lName, String country, String city, String adress, String birthDate,
-			Date joinDate) {
-		super();
-		this.userId = userId;
-		this.fName = fName;
-		this.lName = lName;
-		this.country = country;
-		this.city = city;
-		this.adress = adress;
-		this.birthDate = birthDate;
-		this.joinDate = joinDate;
-	}
-	public User() {
-		super();
-	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", fName=" + fName + ", lName=" + lName + ", country=" + country + ", city="
-				+ city + ", adress=" + adress + ", birthDate=" + birthDate + ", joinDate=" + joinDate + "]";
-	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -109,9 +45,12 @@ public class User {
 		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
 		result = prime * result + ((joinDate == null) ? 0 : joinDate.hashCode());
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -156,6 +95,11 @@ public class User {
 				return false;
 		} else if (!lName.equals(other.lName))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
@@ -163,6 +107,118 @@ public class User {
 			return false;
 		return true;
 	}
+
+
+	public User() {
+		super();
+	}
+
+
+	public User(Long userId, String fName, String lName, String country, String city, String adress, String birthDate,
+			String password, Date joinDate) {
+		super();
+		this.userId = userId;
+		this.fName = fName;
+		this.lName = lName;
+		this.country = country;
+		this.city = city;
+		this.adress = adress;
+		this.birthDate = birthDate;
+		this.password = password;
+		this.joinDate = joinDate;
+	}
+
+
+	public Long getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+
+	public String getfName() {
+		return fName;
+	}
+
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+
+	public String getlName() {
+		return lName;
+	}
+
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public String getAdress() {
+		return adress;
+	}
+
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+
+
 	public User (UserDTO userdto)
 	{
 		UserDTO convertedUser = new UserDTO();
