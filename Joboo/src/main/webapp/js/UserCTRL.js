@@ -5,4 +5,5 @@ function NewUserController($scope, $location, User) {
         User.save($scope.user, function (user) {
             $location.path('/');
         });
-    };
+       
+    }};

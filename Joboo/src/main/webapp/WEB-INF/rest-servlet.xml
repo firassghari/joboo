@@ -27,7 +27,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>oorg.job.joboo.repository</value>
+                <value>org.job.joboo.repository</value>
             </list>
         </property>
         <property name="hibernateProperties">
