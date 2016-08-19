@@ -1,15 +1,20 @@
 
-<html>
+<html ng-app="userApp">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.8/angular-resource.min.js"></script>
     <script src="js/Application.js"></script>
     <script src="js/UserSRV.js"></script>
     <script src="js/UserCTRL.js"></script>
 </head>
 <body>
-bonjour
-<div ng-view> </div>
+
+<div id="pageBody">
+    <div ng-view></div>
+</div>
+
 </body>
 </html>

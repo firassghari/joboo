@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('todoService', ['ngResource']).
+angular.module('userService', ['ngResource']).
         factory('User', function ($resource) {
             return $resource('rest/user/:id', {}, {
                 'save': {method:'PUT'}
