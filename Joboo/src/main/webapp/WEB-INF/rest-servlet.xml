@@ -9,6 +9,9 @@
                             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
                             http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+
+
+
     <context:property-placeholder location="classpath:application.properties" />
 
     <context:component-scan base-package="org.job.joboo" />
