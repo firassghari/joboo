@@ -1,11 +1,9 @@
 package org.job.joboo.repository.entity;
 
-import java.util.Date;
+import org.job.joboo.model.dto.UserDTO;
 
 import javax.persistence.*;
-
-import javax.persistence.Table;
-import org.job.joboo.model.dto.UserDTO;
+import java.util.Date;
 @Entity
 @Table(name="Juser" )
 public class User {
@@ -29,8 +27,41 @@ public class User {
 	private String password ;
 	@Column(name = "joinDate", nullable = false)
 	private Date   joinDate ;
-	
-	
+
+
+	public User() {
+		super();
+	}
+
+
+	public User(Long userId, String fName, String lName, String country, String city, String adress, String birthDate,
+				String password, Date joinDate) {
+		super();
+		this.userId = userId;
+		this.fName = fName;
+		this.lName = lName;
+		this.country = country;
+		this.city = city;
+		this.adress = adress;
+		this.birthDate = birthDate;
+		this.password = password;
+		this.joinDate = joinDate;
+	}
+
+
+	public User(UserDTO userdto) {
+
+		this.setAdress(userdto.getAdress());
+		this.setBirthDate(userdto.getBirthDate());
+		this.setCity(userdto.getCity());
+		this.setCountry(userdto.getCountry());
+		this.setfName(userdto.getfName());
+		this.setJoinDate(userdto.getJoinDate());
+		this.setlName(userdto.getlName());
+
+
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -46,7 +77,6 @@ public class User {
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -105,129 +135,90 @@ public class User {
 		return true;
 	}
 
-
-	public User() {
-		super();
-	}
-
-
-	public User(Long userId, String fName, String lName, String country, String city, String adress, String birthDate,
-			String password, Date joinDate) {
-		super();
-		this.userId = userId;
-		this.fName = fName;
-		this.lName = lName;
-		this.country = country;
-		this.city = city;
-		this.adress = adress;
-		this.birthDate = birthDate;
-		this.password = password;
-		this.joinDate = joinDate;
-	}
-
-
 	public Long getUserId() {
 		return userId;
 	}
-
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-
 	public String getfName() {
 		return fName;
 	}
-
 
 	public void setfName(String fName) {
 		this.fName = fName;
 	}
 
-
 	public String getlName() {
 		return lName;
 	}
-
 
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
 
-
 	public String getCountry() {
 		return country;
 	}
-
 
 	public void setCountry(String country) {
 		this.country = country;
 	}
 
-
 	public String getCity() {
 		return city;
 	}
-
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-
 	public String getAdress() {
 		return adress;
 	}
-
 
 	public void setAdress(String adress) {
 		this.adress = adress;
 	}
 
-
 	public String getBirthDate() {
 		return birthDate;
 	}
-
 
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
 	public Date getJoinDate() {
 		return joinDate;
 	}
-
 
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
 
-
-	public User (UserDTO userdto)
-	{
-		UserDTO convertedUser = new UserDTO();
-		convertedUser.setAdress(userdto.getAdress());
-		convertedUser.setBirthDate(userdto.getBirthDate());
-		convertedUser.setCity(userdto.getCity());
-		convertedUser.setCountry(userdto.getCountry());
-		convertedUser.setfName(userdto.getfName());
-		convertedUser.setJoinDate(userdto.getJoinDate());
-		convertedUser.setlName(userdto.getlName());
-		
+	@Override
+	public String toString() {
+		return "User{" +
+				"userId=" + userId +
+				", fName='" + fName + '\'' +
+				", lName='" + lName + '\'' +
+				", country='" + country + '\'' +
+				", city='" + city + '\'' +
+				", adress='" + adress + '\'' +
+				", birthDate='" + birthDate + '\'' +
+				", password='" + password + '\'' +
+				", joinDate=" + joinDate +
+				'}';
 	}
-
-	
 }

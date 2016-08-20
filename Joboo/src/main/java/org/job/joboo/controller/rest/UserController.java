@@ -2,10 +2,8 @@ package org.job.joboo.controller.rest;
 
 
 import org.job.joboo.model.dto.UserDTO;
-
 import org.job.joboo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,17 +18,12 @@ public class UserController {
 	@RequestMapping(value = "/user",method = RequestMethod.POST)
 	ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userdto)
 	{
-		System.out.println(userdto.getAdress() + userdto.getfName() + userdto.getlName());
+		System.out.println(userdto.toString());
 		UserDTO user = null ;
-		try 
-		{
-			 user = userService.addUser(userdto);
-		}
-		catch( Exception ex)
-		{
-			return new ResponseEntity<UserDTO>(user , HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		 return new ResponseEntity<UserDTO>(user , HttpStatus.OK);
+
+		user = userService.addUser(userdto);
+
+		return new ResponseEntity<UserDTO>(user , HttpStatus.OK);
 		
 		
 	}

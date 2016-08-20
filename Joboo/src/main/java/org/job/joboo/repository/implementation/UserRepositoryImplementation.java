@@ -1,13 +1,16 @@
 package org.job.joboo.repository.implementation;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.job.joboo.repository.AbstractRepository;
 import org.job.joboo.repository.entity.User;
 import org.job.joboo.repository.iRepository.UserRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
+import java.util.List;
+
 @Repository("userRepository")
+@Transactional
 public class UserRepositoryImplementation extends AbstractRepository implements UserRepository{
 
 	public Collection<User> findAll() {
@@ -28,8 +31,11 @@ public class UserRepositoryImplementation extends AbstractRepository implements 
 	}
 
 	public User addUser(User user) {
-	
+
+		user.setPassword("hdfsdfsd");
+		System.out.println(user.toString());
 		getSession().save(user);
+		System.out.println(user);
 		return user;
 	}
 

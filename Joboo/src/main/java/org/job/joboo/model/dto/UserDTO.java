@@ -1,9 +1,9 @@
 package org.job.joboo.model.dto;
 
+import org.job.joboo.repository.entity.User;
+
 import java.io.Serializable;
 import java.util.Date;
-
-import org.job.joboo.repository.entity.User;
 
 
 
@@ -22,56 +22,9 @@ public class UserDTO implements Serializable  {
 	private String adress;
 	private String birthDate ;
 	private Date   joinDate ;
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-	public String getfName() {
-		return fName;
-	}
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-	public String getlName() {
-		return lName;
-	}
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getAdress() {
-		return adress;
-	}
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
-	public String getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-	public Date getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
-	}
+
 	public UserDTO(Long userId, String fName, String lName, String country, String city, String adress,
-			String birthDate, Date joinDate) {
+				   String birthDate, Date joinDate) {
 		super();
 		this.userId = userId;
 		this.fName = fName;
@@ -82,10 +35,89 @@ public class UserDTO implements Serializable  {
 		this.birthDate = birthDate;
 		this.joinDate = joinDate;
 	}
+
 	public UserDTO() {
 		super();
 	}
-	
+
+	public UserDTO(User user) {
+		UserDTO convertedUser = new UserDTO();
+
+		convertedUser.setAdress(user.getAdress());
+		convertedUser.setBirthDate(user.getBirthDate());
+		convertedUser.setCity(user.getCity());
+		convertedUser.setCountry(user.getCountry());
+		convertedUser.setfName(user.getfName());
+		convertedUser.setJoinDate(user.getJoinDate());
+		convertedUser.setlName(user.getlName());
+
+
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -100,6 +132,7 @@ public class UserDTO implements Serializable  {
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -151,20 +184,18 @@ public class UserDTO implements Serializable  {
 			return false;
 		return true;
 	}
-	public UserDTO(User user)
-	{
-		UserDTO convertedUser = new UserDTO();
-	
-		convertedUser.setAdress(user.getAdress());
-		convertedUser.setBirthDate(user.getBirthDate());
-		convertedUser.setCity(user.getCity());
-		convertedUser.setCountry(user.getCountry());
-		convertedUser.setfName(user.getfName());
-		convertedUser.setJoinDate(user.getJoinDate());
-		convertedUser.setlName(user.getlName());
-		
-		
-		
+
+	@Override
+	public String toString() {
+		return "UserDTO{" +
+				"userId=" + userId +
+				", fName='" + fName + '\'' +
+				", lName='" + lName + '\'' +
+				", country='" + country + '\'' +
+				", city='" + city + '\'' +
+				", adress='" + adress + '\'' +
+				", birthDate='" + birthDate + '\'' +
+				", joinDate=" + joinDate +
+				'}';
 	}
-	
 }
