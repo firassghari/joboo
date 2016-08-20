@@ -2,15 +2,12 @@ package org.job.joboo.repository.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import org.hibernate.annotations.Table;
+import javax.persistence.Table;
 import org.job.joboo.model.dto.UserDTO;
-
-@Table(appliesTo = "User")
+@Entity
+@Table(name="Juser" )
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
