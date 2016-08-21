@@ -3,6 +3,7 @@
 angular.module('userService', ['ngResource']).
         factory('User', function ($resource) {
             return $resource('rest/user/:id', {}, {
-                'save': {method:'POST'}
+                'save': {method: 'POST'},
+                'list': {method: 'GET'}
             });
         });

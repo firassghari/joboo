@@ -22,10 +22,10 @@ public class UserDTO implements Serializable  {
 	private String adress;
 	private String birthDate ;
 	private Date   joinDate ;
+	private String password;
 
-	public UserDTO(Long userId, String fName, String lName, String country, String city, String adress,
-				   String birthDate, Date joinDate) {
-		super();
+	public UserDTO(String password, Long userId, String fName, String lName, String country, String city, String adress, String birthDate, Date joinDate) {
+		this.password = password;
 		this.userId = userId;
 		this.fName = fName;
 		this.lName = lName;
@@ -37,21 +37,23 @@ public class UserDTO implements Serializable  {
 	}
 
 	public UserDTO() {
-		super();
 	}
 
 	public UserDTO(User user) {
-		UserDTO convertedUser = new UserDTO();
 
-		convertedUser.setAdress(user.getAdress());
-		convertedUser.setBirthDate(user.getBirthDate());
-		convertedUser.setCity(user.getCity());
-		convertedUser.setCountry(user.getCountry());
-		convertedUser.setfName(user.getfName());
-		convertedUser.setJoinDate(user.getJoinDate());
-		convertedUser.setlName(user.getlName());
+		this.setAdress(user.getAdress());
+		this.setBirthDate(user.getBirthDate());
+		this.setCity(user.getCity());
+		this.setCountry(user.getCountry());
+		this.setfName(user.getfName());
+		this.setJoinDate(user.getJoinDate());
+		this.setlName(user.getlName());
+		this.setPassword(user.getPassword());
 
+	}
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 	public Long getUserId() {
@@ -118,71 +120,45 @@ public class UserDTO implements Serializable  {
 		this.joinDate = joinDate;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
-		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((country == null) ? 0 : country.hashCode());
-		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
-		result = prime * result + ((joinDate == null) ? 0 : joinDate.hashCode());
-		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		return result;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserDTO other = (UserDTO) obj;
-		if (adress == null) {
-			if (other.adress != null)
-				return false;
-		} else if (!adress.equals(other.adress))
-			return false;
-		if (birthDate == null) {
-			if (other.birthDate != null)
-				return false;
-		} else if (!birthDate.equals(other.birthDate))
-			return false;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (country == null) {
-			if (other.country != null)
-				return false;
-		} else if (!country.equals(other.country))
-			return false;
-		if (fName == null) {
-			if (other.fName != null)
-				return false;
-		} else if (!fName.equals(other.fName))
-			return false;
-		if (joinDate == null) {
-			if (other.joinDate != null)
-				return false;
-		} else if (!joinDate.equals(other.joinDate))
-			return false;
-		if (lName == null) {
-			if (other.lName != null)
-				return false;
-		} else if (!lName.equals(other.lName))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		UserDTO userDTO = (UserDTO) o;
+
+		if (userId != null ? !userId.equals(userDTO.userId) : userDTO.userId != null) return false;
+		if (fName != null ? !fName.equals(userDTO.fName) : userDTO.fName != null) return false;
+		if (lName != null ? !lName.equals(userDTO.lName) : userDTO.lName != null) return false;
+		if (country != null ? !country.equals(userDTO.country) : userDTO.country != null) return false;
+		if (city != null ? !city.equals(userDTO.city) : userDTO.city != null) return false;
+		if (adress != null ? !adress.equals(userDTO.adress) : userDTO.adress != null) return false;
+		if (birthDate != null ? !birthDate.equals(userDTO.birthDate) : userDTO.birthDate != null) return false;
+		if (joinDate != null ? !joinDate.equals(userDTO.joinDate) : userDTO.joinDate != null) return false;
+		return password != null ? password.equals(userDTO.password) : userDTO.password == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = userId != null ? userId.hashCode() : 0;
+		result = 31 * result + (fName != null ? fName.hashCode() : 0);
+		result = 31 * result + (lName != null ? lName.hashCode() : 0);
+		result = 31 * result + (country != null ? country.hashCode() : 0);
+		result = 31 * result + (city != null ? city.hashCode() : 0);
+		result = 31 * result + (adress != null ? adress.hashCode() : 0);
+		result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
+		result = 31 * result + (joinDate != null ? joinDate.hashCode() : 0);
+		result = 31 * result + (password != null ? password.hashCode() : 0);
+		return result;
 	}
 
 	@Override
@@ -196,6 +172,7 @@ public class UserDTO implements Serializable  {
 				", adress='" + adress + '\'' +
 				", birthDate='" + birthDate + '\'' +
 				", joinDate=" + joinDate +
+				", password='" + password + '\'' +
 				'}';
 	}
 }

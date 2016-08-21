@@ -58,7 +58,7 @@ public class User {
 		this.setfName(userdto.getfName());
 		this.setJoinDate(userdto.getJoinDate());
 		this.setlName(userdto.getlName());
-
+		this.setPassword(userdto.getPassword());
 
 	}
 

@@ -5,5 +5,14 @@ function NewUserController($scope, $location, User) {
         User.save($scope.user, function (user) {
             $location.path('/');
         });
-       
-    }};
+
+    }
+}
+function ListUserController($scope, $location, User) {
+    $scope.submit = function () {
+        User.list($scope.user, function (user) {
+            $location.path('/');
+        });
+
+    }
+}

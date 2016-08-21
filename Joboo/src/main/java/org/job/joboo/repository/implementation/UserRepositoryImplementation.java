@@ -32,8 +32,7 @@ public class UserRepositoryImplementation extends AbstractRepository implements 
 
 	public User addUser(User user) {
 
-		user.setPassword("hdfsdfsd");
-		System.out.println(user.toString());
+
 		getSession().save(user);
 		System.out.println(user);
 		return user;
