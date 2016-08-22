@@ -1,15 +1,15 @@
 package org.job.joboo.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import org.job.joboo.model.dto.UserDTO;
 import org.job.joboo.repository.entity.User;
 import org.job.joboo.repository.iRepository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
 
 @Service(value="userService")
 public class UserService {
@@ -25,6 +25,14 @@ public class UserService {
 		
 	}
 
+	public Collection<UserDTO> findAllUsers() {
+		Collection<User> users = userRepository.findAll();
+		Collection<UserDTO> newusers = new ArrayList<UserDTO>();
+		for (User user : users) {
+			newusers.add(new UserDTO(user));
+		}
+		return newusers;
+	}
 
 	private Date setCurrentDate() {
 		Date joindate = new Date();
