@@ -41,4 +41,16 @@ public class UserController {
 
 
 	}
+
+	@RequestMapping(value = "/user", method = RequestMethod.PUT)
+	ResponseEntity<UserDTO> edituser(@RequestBody UserDTO userdto) {
+		System.out.println(userdto.toString());
+		UserDTO user = null;
+
+		user = userService.editUser(userdto);
+
+		return new ResponseEntity<UserDTO>(user, HttpStatus.OK);
+
+
+	}
 }

@@ -34,6 +34,9 @@ public class UserService {
 		return newusers;
 	}
 
+	public UserDTO editUser(UserDTO userToEdit) {
+		return new UserDTO(userRepository.editUser(new User(userToEdit)));
+	}
 	private Date setCurrentDate() {
 		Date joindate = new Date();
 		   Calendar cal = Calendar.getInstance();
