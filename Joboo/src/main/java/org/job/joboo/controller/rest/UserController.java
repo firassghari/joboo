@@ -6,10 +6,7 @@ import org.job.joboo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -48,6 +45,18 @@ public class UserController {
 		UserDTO user = null;
 
 		user = userService.editUser(userdto);
+
+		return new ResponseEntity<UserDTO>(user, HttpStatus.OK);
+
+
+	}
+
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+	ResponseEntity<UserDTO> gettuser(@PathVariable Long userId) {
+
+		UserDTO user = null;
+
+		user = userService.getUser(userId);
 
 		return new ResponseEntity<UserDTO>(user, HttpStatus.OK);
 

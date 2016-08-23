@@ -40,7 +40,7 @@ public class UserDTO implements Serializable  {
 	}
 
 	public UserDTO(User user) {
-
+		this.userId = user.getUserId();
 		this.setAdress(user.getAdress());
 		this.setBirthDate(user.getBirthDate());
 		this.setCity(user.getCity());

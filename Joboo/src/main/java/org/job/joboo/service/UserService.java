@@ -25,6 +25,11 @@ public class UserService {
 		
 	}
 
+	public UserDTO getUser(Long userid) {
+		User user = userRepository.findOneUserById(userid);
+		return new UserDTO(user);
+	}
+
 	public Collection<UserDTO> findAllUsers() {
 		Collection<User> users = userRepository.findAll();
 		Collection<UserDTO> newusers = new ArrayList<UserDTO>();

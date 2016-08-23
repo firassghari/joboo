@@ -9,6 +9,9 @@ monApp.config(['$routeProvider', function ($routeProvider) {
         }).when('/user/list', {
         templateUrl: 'views/ListUser.html',
         controller: ListUserController
+    }).when('/user/:id', {
+        templateUrl: 'views/EditUser.html',
+        controller: EditUserController
     })
         .otherwise({redirectTo: '/user/new'});
 }]);
