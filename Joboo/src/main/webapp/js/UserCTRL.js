@@ -9,10 +9,5 @@ function NewUserController($scope, $location, User) {
     }
 }
 function ListUserController($scope, $location, User) {
-    $scope.submit = function () {
-        User.list($scope.user, function (user) {
-            $location.path('/');
-        });
-
-    }
+    $scope.users = User.query();
 }
