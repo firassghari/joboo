@@ -20,9 +20,16 @@ public class UserController {
 		System.out.println(userdto.toString());
 		UserDTO user = null ;
 
+		try {
+
+
 		user = userService.addUser(userdto);
 
 		return new ResponseEntity<UserDTO>(user , HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<UserDTO>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 
 
 	}
