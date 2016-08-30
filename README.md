@@ -1,2 +1,4 @@
 # joboo
-This is an example of SpringMVC and angularJS Restfull application . 
+This an example of Single Page Application with Spring MVC and AngularJS . 
+
+
