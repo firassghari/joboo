@@ -4,6 +4,9 @@ import org.job.joboo.model.dto.UserDTO;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="Juser" )
 public class User {
@@ -27,7 +30,9 @@ public class User {
 	private String password ;
 	@Column(name = "joinDate", nullable = false)
 	private Date   joinDate ;
-
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "users_authority", joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "userId")}, inverseJoinColumns = {@JoinColumn(name = "id_authority", table = "authority", referencedColumnName = "id")})
+	private Set<Authority> authorities = new HashSet<Authority>();
 
 	public User() {
 		super();
