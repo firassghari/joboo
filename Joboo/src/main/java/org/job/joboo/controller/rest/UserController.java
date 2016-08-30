@@ -21,10 +21,7 @@ public class UserController {
 		UserDTO user = null ;
 
 		try {
-
-
 		user = userService.addUser(userdto);
-
 		return new ResponseEntity<UserDTO>(user , HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<UserDTO>(user, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -38,22 +35,29 @@ public class UserController {
 	ResponseEntity<Collection<UserDTO>> ListUsers() {
 
 		Collection<UserDTO> users = null;
+		try {
+			users = userService.findAllUsers();
 
-		users = userService.findAllUsers();
+			return new ResponseEntity<Collection<UserDTO>>(users, HttpStatus.OK);
 
-		return new ResponseEntity<Collection<UserDTO>>(users, HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<Collection<UserDTO>>(users, HttpStatus.INTERNAL_SERVER_ERROR);
 
-
+		}
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)
 	ResponseEntity<UserDTO> edituser(@RequestBody UserDTO userdto) {
-		System.out.println(userdto.toString());
+
 		UserDTO user = null;
-
+		try {
 		user = userService.editUser(userdto);
-
 		return new ResponseEntity<UserDTO>(user, HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<UserDTO>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+
 
 
 	}
@@ -62,10 +66,14 @@ public class UserController {
 	ResponseEntity<UserDTO> gettuser(@PathVariable Long userId) {
 
 		UserDTO user = null;
+		try {
+			user = userService.getUser(userId);
+			return new ResponseEntity<UserDTO>(user, HttpStatus.OK);
+		} catch (Exception exp) {
+			return new ResponseEntity<UserDTO>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
-		user = userService.getUser(userId);
 
-		return new ResponseEntity<UserDTO>(user, HttpStatus.OK);
 
 
 	}
