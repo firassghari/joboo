@@ -20,7 +20,9 @@ public class UserService {
 	{
 		   Date joindate = setCurrentDate();
 		   user.setJoinDate(joindate);
-		   userRepository.addUser(new User(user));
+		User usertoinsert = new User(user);
+		System.out.println("user to insert " + usertoinsert);
+		userRepository.addUser(usertoinsert);
 		return user;
 		
 	}

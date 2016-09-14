@@ -17,7 +17,7 @@ public class UserController {
 	@RequestMapping(value = "/user",method = RequestMethod.POST)
 	ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userdto)
 	{
-		System.out.println(userdto.toString());
+		System.out.println("je modifie " + userdto.toString());
 		UserDTO user = null ;
 
 		try {
@@ -54,6 +54,7 @@ public class UserController {
 		user = userService.editUser(userdto);
 		return new ResponseEntity<UserDTO>(user, HttpStatus.OK);
 		} catch (Exception ex) {
+			System.out.println("exception remontée" + ex);
 			return new ResponseEntity<UserDTO>(user, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 

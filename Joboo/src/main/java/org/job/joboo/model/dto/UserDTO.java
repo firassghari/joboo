@@ -17,6 +17,8 @@ public class UserDTO implements Serializable  {
 	private Long userId;
 	private String fName ;
 	private String lName;
+	private String uName;
+	private String email;
 	private String country ;
 	private String city ;
 	private String adress;
@@ -24,23 +26,14 @@ public class UserDTO implements Serializable  {
 	private Date   joinDate ;
 	private String password;
 
-	public UserDTO(String password, Long userId, String fName, String lName, String country, String city, String adress, String birthDate, Date joinDate) {
-		this.password = password;
-		this.userId = userId;
-		this.fName = fName;
-		this.lName = lName;
-		this.country = country;
-		this.city = city;
-		this.adress = adress;
-		this.birthDate = birthDate;
-		this.joinDate = joinDate;
-	}
 
 	public UserDTO() {
 	}
 
 	public UserDTO(User user) {
-		this.userId = user.getUserId();
+		this.userId = user.getId();
+		this.setuName(user.getuName());
+		this.setEmail(user.getEmail());
 		this.setAdress(user.getAdress());
 		this.setBirthDate(user.getBirthDate());
 		this.setCity(user.getCity());
@@ -50,6 +43,20 @@ public class UserDTO implements Serializable  {
 		this.setlName(user.getlName());
 		this.setPassword(user.getPassword());
 
+	}
+
+	public UserDTO(Long userId, String fName, String lName, String uName, String email, String country, String city, String adress, String birthDate, Date joinDate, String password) {
+		this.userId = userId;
+		this.fName = fName;
+		this.lName = lName;
+		this.uName = uName;
+		this.email = email;
+		this.country = country;
+		this.city = city;
+		this.adress = adress;
+		this.birthDate = birthDate;
+		this.joinDate = joinDate;
+		this.password = password;
 	}
 
 	public static long getSerialVersionUID() {
@@ -78,6 +85,22 @@ public class UserDTO implements Serializable  {
 
 	public void setlName(String lName) {
 		this.lName = lName;
+	}
+
+	public String getuName() {
+		return uName;
+	}
+
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCountry() {
@@ -129,44 +152,13 @@ public class UserDTO implements Serializable  {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		UserDTO userDTO = (UserDTO) o;
-
-		if (userId != null ? !userId.equals(userDTO.userId) : userDTO.userId != null) return false;
-		if (fName != null ? !fName.equals(userDTO.fName) : userDTO.fName != null) return false;
-		if (lName != null ? !lName.equals(userDTO.lName) : userDTO.lName != null) return false;
-		if (country != null ? !country.equals(userDTO.country) : userDTO.country != null) return false;
-		if (city != null ? !city.equals(userDTO.city) : userDTO.city != null) return false;
-		if (adress != null ? !adress.equals(userDTO.adress) : userDTO.adress != null) return false;
-		if (birthDate != null ? !birthDate.equals(userDTO.birthDate) : userDTO.birthDate != null) return false;
-		if (joinDate != null ? !joinDate.equals(userDTO.joinDate) : userDTO.joinDate != null) return false;
-		return password != null ? password.equals(userDTO.password) : userDTO.password == null;
-
-	}
-
-	@Override
-	public int hashCode() {
-		int result = userId != null ? userId.hashCode() : 0;
-		result = 31 * result + (fName != null ? fName.hashCode() : 0);
-		result = 31 * result + (lName != null ? lName.hashCode() : 0);
-		result = 31 * result + (country != null ? country.hashCode() : 0);
-		result = 31 * result + (city != null ? city.hashCode() : 0);
-		result = 31 * result + (adress != null ? adress.hashCode() : 0);
-		result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
-		result = 31 * result + (joinDate != null ? joinDate.hashCode() : 0);
-		result = 31 * result + (password != null ? password.hashCode() : 0);
-		return result;
-	}
-
-	@Override
 	public String toString() {
 		return "UserDTO{" +
 				"userId=" + userId +
 				", fName='" + fName + '\'' +
 				", lName='" + lName + '\'' +
+				", uName='" + uName + '\'' +
+				", email='" + email + '\'' +
 				", country='" + country + '\'' +
 				", city='" + city + '\'' +
 				", adress='" + adress + '\'' +

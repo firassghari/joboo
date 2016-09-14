@@ -1,21 +1,28 @@
 package org.job.joboo.repository.iRepository;
-import java.util.Collection;
 
 import org.job.joboo.repository.entity.User;
 
+import java.util.Collection;
+
 public interface UserRepository {
 	/* method to find all users*/
-	public Collection<User> findAll();
+	Collection<User> findAll();
 	/*method to find user By identifiant*/
-	public User findOneUserById(Long id);
+	User findOneUserById(Long id);
 	/* method to edit user */
-	public User editUser(User user );
+	User editUser(User user);
 	/* method to add user */
-	public User addUser(User user);
-	public Collection<User> searchUserByName(String name);
-	public Collection <User> serachUserByFirstName(String fname);
-	public Collection <User> serachUserByCountry(String country);
-	public Collection <User> searchUserByCity	(String city);
+	User findUserByUserName(String username);
+
+	User addUser(User user);
+
+	Collection<User> searchUserByName(String name);
+
+	Collection<User> serachUserByFirstName(String fname);
+
+	Collection<User> serachUserByCountry(String country);
+
+	Collection<User> searchUserByCity(String city);
 
 	
 }

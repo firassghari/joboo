@@ -8,14 +8,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="Juser" )
+@Table(name = "user")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "userId", unique = true, nullable = false)
-	private Long userId;
+	@GeneratedValue
+	private Long id;
 	@Column(name = "fName", nullable = false)
 	private String fName ;
+	@Column(name = "uName", nullable = false)
+	private String uName;
+	@Column(name = "email", nullable = false)
+	private String email;
 	@Column(name = "lName", nullable = false)
 	private String lName;
 	@Column(name = "country", nullable = false)
@@ -31,19 +34,29 @@ public class User {
 	@Column(name = "joinDate", nullable = false)
 	private Date   joinDate ;
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "users_authority", joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "userId")}, inverseJoinColumns = {@JoinColumn(name = "id_authority", table = "authority", referencedColumnName = "id")})
+	@JoinTable(name = "users_authority", joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "id_authority", table = "authority", referencedColumnName = "id")})
 	private Set<Authority> authorities = new HashSet<Authority>();
 
-	public User() {
-		super();
+	public User(UserDTO userdto) {
+		System.out.println("userna" + userdto.getuName());
+		this.id = userdto.getUserId();
+		this.uName = userdto.getuName();
+		this.email = userdto.getEmail();
+		this.adress = userdto.getAdress();
+		this.birthDate = userdto.getBirthDate();
+		this.city = userdto.getCity();
+		this.country = userdto.getCountry();
+		this.fName = userdto.getfName();
+		this.joinDate = userdto.getJoinDate();
+		this.lName = userdto.getlName();
+		this.password = userdto.getPassword();
+
 	}
 
-
-	public User(Long userId, String fName, String lName, String country, String city, String adress, String birthDate,
-				String password, Date joinDate) {
-		super();
-		this.userId = userId;
+	public User(String fName, String uName, String email, String lName, String country, String city, String adress, String birthDate, String password, Date joinDate, Set<Authority> authorities) {
 		this.fName = fName;
+		this.uName = uName;
+		this.email = email;
 		this.lName = lName;
 		this.country = country;
 		this.city = city;
@@ -51,101 +64,18 @@ public class User {
 		this.birthDate = birthDate;
 		this.password = password;
 		this.joinDate = joinDate;
+		this.authorities = authorities;
 	}
 
-
-	public User(UserDTO userdto) {
-
-		this.setAdress(userdto.getAdress());
-		this.setBirthDate(userdto.getBirthDate());
-		this.setCity(userdto.getCity());
-		this.setCountry(userdto.getCountry());
-		this.setfName(userdto.getfName());
-		this.setJoinDate(userdto.getJoinDate());
-		this.setlName(userdto.getlName());
-		this.setPassword(userdto.getPassword());
-
+	public User() {
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
-		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((country == null) ? 0 : country.hashCode());
-		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
-		result = prime * result + ((joinDate == null) ? 0 : joinDate.hashCode());
-		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		return result;
+	public Long getId() {
+		return id;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (adress == null) {
-			if (other.adress != null)
-				return false;
-		} else if (!adress.equals(other.adress))
-			return false;
-		if (birthDate == null) {
-			if (other.birthDate != null)
-				return false;
-		} else if (!birthDate.equals(other.birthDate))
-			return false;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (country == null) {
-			if (other.country != null)
-				return false;
-		} else if (!country.equals(other.country))
-			return false;
-		if (fName == null) {
-			if (other.fName != null)
-				return false;
-		} else if (!fName.equals(other.fName))
-			return false;
-		if (joinDate == null) {
-			if (other.joinDate != null)
-				return false;
-		} else if (!joinDate.equals(other.joinDate))
-			return false;
-		if (lName == null) {
-			if (other.lName != null)
-				return false;
-		} else if (!lName.equals(other.lName))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		return true;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getfName() {
@@ -154,6 +84,22 @@ public class User {
 
 	public void setfName(String fName) {
 		this.fName = fName;
+	}
+
+	public String getuName() {
+		return uName;
+	}
+
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getlName() {
@@ -212,11 +158,21 @@ public class User {
 		this.joinDate = joinDate;
 	}
 
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
-				"userId=" + userId +
+				"id=" + id +
 				", fName='" + fName + '\'' +
+				", uName='" + uName + '\'' +
+				", email='" + email + '\'' +
 				", lName='" + lName + '\'' +
 				", country='" + country + '\'' +
 				", city='" + city + '\'' +
@@ -224,6 +180,7 @@ public class User {
 				", birthDate='" + birthDate + '\'' +
 				", password='" + password + '\'' +
 				", joinDate=" + joinDate +
+				", authorities=" + authorities +
 				'}';
 	}
 }

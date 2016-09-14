@@ -16,25 +16,30 @@ public class UserRepositoryImplementation extends AbstractRepository implements 
 	public Collection<User> findAll() {
 		  List<User> list = (List<User>) getSession().createQuery("from User").list();
 		return list;
-		
 	}
 
 	public User findOneUserById(Long id) {
 		User user =  (User) getSession().get(User.class, id);
+		System.out.println("user found " + user);
 		return  user;
 	}
 
 	public User editUser(User user) {
-	
-		getSession().save(user);
+
+		getSession().update(user);
 		return user;
 	}
+
+	public User findUserByUserName(String username) {
+		return (User) getSession().createQuery("from User where uName = :username").setParameter("username", username);
+	}
+
 
 	public User addUser(User user) {
 
 
 		getSession().save(user);
-		System.out.println(user);
+		System.out.println("inserting " + user);
 		return user;
 	}
 
