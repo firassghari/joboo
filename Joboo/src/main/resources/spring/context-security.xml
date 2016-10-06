@@ -1,0 +1,37 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/security"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                    http://www.springframework.org/schema/security
+                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http auto-config='true' entry-point-ref="authenticationEntryPoint">
+        <form-login authentication-success-handler-ref="ajaxAuthenticationSuccessHandler"
+                    authentication-failure-handler-ref="ajaxAuthenticationFailureHandler"/>
+        <logout success-handler-ref="ajaxLogoutSuccessHandler"/>
+    </http>
+
+    <beans:bean id="authenticationEntryPoint"
+                class="org.job.joboo.security.Http401DeniedEntryPoint"/>
+    <beans:bean id="ajaxAuthenticationSuccessHandler"
+                class="org.job.joboo.security.AjaxAuthenticationSuccessHandler"/>
+    <beans:bean id="ajaxAuthenticationFailureHandler"
+                class="org.job.joboo.security.AjaxAuthenticationFailureHandler"/>
+    <beans:bean id="ajaxLogoutSuccessHandler"
+                class="org.job.joboo.security.AjaxLogoutSuccessHandler"/>
+    <beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder ref="encoder"/>
+            <user-service>
+                <user name="rod"
+                      password="firas"
+                      authorities="user"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+
+</beans:beans>
